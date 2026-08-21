@@ -1,0 +1,45 @@
+# R
+.Rhistory
+.RData
+.Rproj.user/
+renv/library/
+renv/staging/
+renv/.cache/
+*.Rproj
+
+# Raw MAF data
+*.maf
+*.maf.gz
+
+# Restricted raw AML data (Tazi NCRI + BeatAML) — not for redistribution
+data/tazi_data/
+data/aml_ohsu_2022/
+
+# Tazi et al. 2022 Nat Commun Supplementary Data 2 (public) and the BED file
+# derived from it — treated like the raw MAFs above (build input, regenerable)
+data/41467_2022_32103_MOESM5_ESM.csv
+data/beat.bed
+
+# Restricted CESA objects (see data/README.md) — not committed here
+data/eso_cesa_after_analysis.rds
+data/CombinedAML_continuous_CI_cesa.rds
+data/CombinedAML_continuous_cesa.rds
+
+# Generated outputs (reproducible from src/; committed figures under
+# results/figures/ are explicitly force-added and exempt from this rule)
+results/
+
+# HPC run artifacts
+logs/
+hpc_*.sh
+preMCMC_workspace.RData
+
+# Intermediate build checkpoints (not part of the documented data/ set)
+data/CRC_models_cesa.rds
+
+# macOS
+.DS_Store
+
+# Claude Code local config/context (not for the shared repo)
+.claude/
+CLAUDE.md

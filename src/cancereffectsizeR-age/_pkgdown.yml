@@ -1,0 +1,136 @@
+destination: docs
+url: https://townsend-lab-yale.github.io/cancereffectsizeR/
+template:
+  bootstrap: 5
+  bootswatch: simplex
+  theme: solarized-light
+  bslib:
+    pkgdown-nav-height: 78px
+    heading_font: avenir
+repo:
+  branch: main
+
+reference:
+- title: Create and manage projects
+  desc:  Create, load, and save projects
+  contents:
+  - CESAnalysis
+  - load_cesa
+  - save_cesa
+  - set_refset_dir
+- title: Obtain and prep MAF data
+  contents:
+  - preload_maf
+  - check_sample_overlap
+  - get_TCGA_project_MAF
+  - vcfs_to_maf_table
+  - make_PathScore_input
+  - lift_bed
+- title: Load and manage variants
+  contents:
+  - load_maf
+  - select_variants
+  - variant_counts
+  - samples_with
+  - add_variants
+  - add_covered_regions
+  - baseline_mutation_rates
+- title: Load sample-level data
+  contents:
+  - load_sample_data
+  - clear_sample_data
+- title: Compound variants
+  desc: Combine variants into arbitrary batches and test for batch-level selection
+  contents:
+  - define_compound_variants
+  - CompoundVariantSet
+- title: Trinucleotide signatures and rates
+  desc: Mutational signature extraction and inference of context-specific mutation rates
+  contents:
+  - trinuc_mutation_rates
+  - suggest_cosmic_signature_exclusions
+  - trinuc_snv_counts
+  - convert_signature_weights_for_mp
+  - clear_trinuc_rates_and_signatures
+  - set_signature_weights
+  - set_trinuc_rates
+  - assign_group_average_trinuc_rates
+- title: Gene mutation rates
+  desc: Calculate neutral gene mutation rates
+  contents:
+  - gene_mutation_rates
+  - set_gene_rates
+  - clear_gene_rates
+- title: Cancer effect sizes
+  desc: Quantify selection for somatic variants
+  contents:
+  - ces_variant
+  - ces_epistasis
+  - ces_gene_epistasis
+  - mutational_signature_effects
+  - clear_effect_output
+  - clear_epistasis_output
+- title: Visualization
+  desc: Display and compare variant effect sizes
+  contents:
+  - plot_effects
+  - plot_signature_effects
+  - plot_epistasis
+  - epistasis_plot_schematic
+- title: Selection models
+  desc: Likelihood function generators for various models of selection
+  contents:
+  - sswm_lik
+  - pairwise_epistasis_lik
+- title: Explore reference data
+  contents:
+  - cosmic_signature_info
+  - get_PathScore_coding_regions
+  - list_ces_refsets
+  - list_ces_covariates
+  - list_ces_signature_sets
+  - get_ces_signature_set
+- title: Create custom reference data
+  desc: Build your own reference data set for almost any genome or tissue type
+  contents:
+  - create_refset
+  - build_RefCDS
+  - validate_signature_set
+- title: Accessors
+  desc: Data accessors that you probably won't need (use cesa\$maf, cesa\$samples, etc. instead)
+  contents:
+  - maf_records
+  - excluded_maf_records
+  - get_sample_info
+  - get_trinuc_rates
+  - get_signature_weights
+  - get_gene_rates
+  - snv_results
+  - epistasis_results
+
+home:
+  strip_header: true
+  description: >
+      cancereffectsizeR, an R package from the Townsend Lab at Yale School of Public Health
+      for quantifying the effect size of somatic mutations in cancer
+  sidebar:
+    structure: [townsend, custom_citation, authors, links, license]
+    components:
+      townsend:
+        title: Provided by
+        text: the [Townsend Lab](https://medicine.yale.edu/lab/townsend/) at the<br> [Yale School of Public Health](https://ysph.yale.edu).
+      custom_citation:
+        title: Citation
+        text: "[How to cite cancereffectsizeR](#citation)"
+navbar:
+  structure:
+    left:  [intro, reference, articles, tutorials, news]
+    right: [search, github]
+  components:
+    intro:
+        text: Tutorial
+        href: articles/cancereffectsizeR.html
+    news:
+        text: News
+        href: news/index.html
+

@@ -1,0 +1,52 @@
+Package: cancereffectsizeR.age
+Type: Package
+Title: Age-Dependent Selection Extensions for cancereffectsizeR
+Version: 2.10.2-age.1
+Authors@R: c(person("Vincent L.", "Cannataro", email = "cannatarov@emmanuel.edu", role = c("aut"),
+             comment = c(ORCID = "0000-0002-6364-7747")),
+             person("Jeff", "Mandell", email = "jeff.mandell@yale.edu", role = c("aut", "cre"),
+             comment = c(ORCID = "0000-0002-3839-2543")),
+             person("Yihan", "Liu", email = "yihan.liu.yl2548@yale.edu", role = c("ctb"),
+             comment = c(ORCID = "0009-0003-0386-9908", NOTE = "Author of age-dependent extensions and manuscript-specific utilities")))
+Description: A derivative of 'cancereffectsizeR' (Cannataro, Mandell, Townsend; GPL-3).
+  This fork adds age-dependent selection estimation (linear, logistic, generalized sigmoid)
+  and continuous-age modeling utilities used in the melanoma-age manuscript.
+  Core methodology is by the original authors; this fork provides project-specific extensions.
+  See the upstream project for the canonical package.
+URL: https://townsend-lab-yale.github.io/cancereffectsizeR, https://github.com/Townsend-Lab-Yale/cancereffectsizeR, https://github.com/Townsend-Lab-Yale/melanoma-age/tree/main/cancereffectsizeR-age
+Depends: 
+  R (>= 3.5.0)
+biocViews:
+Remotes: im3sanger/dndscv
+Imports: 
+	bbmle,
+	Biostrings,
+	BSgenome,
+	crayon,
+	data.table (>= 1.15.0),
+	dndscv,
+	GenomeInfoDb,
+	GenomicRanges,
+	methods,
+	MutationalPatterns (>= 2.99.4),
+	IRanges,
+	pbapply,
+	rtracklayer,
+	S4Vectors,
+	seqinr,
+	stringi,
+	coda
+Suggests: 
+    formattable,
+    ggplot2,
+    ggrepel,
+    knitr,
+    mockr,
+    rmarkdown,
+    styler,
+    testthat (>= 3.0.0)
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.3.2
+Config/testthat/edition: 2
