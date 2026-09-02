@@ -68,7 +68,7 @@ div_mid  <- "#cccccc"  # gray            (w-hat = 1)
 div_high <- "#aad6c6"  # muted teal-green (w-hat > 1)
 what_range <- range(long$log_what, na.rm = TRUE)
 
-log_breaks <- function(rng) seq(floor(rng[1]), ceiling(rng[2]), by = 2)
+log_breaks <- function(rng) seq(floor(rng[1]), ceiling(rng[2]), by = 1)
 log10_labels <- function(b) parse(text = paste0("10^", b))
 
 # One font size for every text element in the figure (axis titles/text,
