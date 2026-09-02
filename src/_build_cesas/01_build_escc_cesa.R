@@ -30,6 +30,19 @@ library(cancereffectsizeR)
 library(ces.refset.hg19)
 library(data.table)
 library(dplyr)
+library(S4Vectors)
+
+# Workaround for an upstream MutationalPatterns bug hit by trinuc_mutation_rates()
+# below: fit_to_signatures_strict()'s backwards-elimination path pre-allocates
+# `sims <- vector("list", nsigs)` and can `break` out of the elimination loop
+# early, leaving trailing NULL entries. Its own NULL-filter,
+# `sims[!S4Vectors::isEmpty(sims)]`, then crashes with "isEmpty() is not
+# defined for objects of class NULL" because S4Vectors::isEmpty has no method
+# for plain NULL. Registering one here is a no-op everywhere else and only
+# affects a discarded diagnostic plot (sim_decay_fig) inside
+# fit_to_signatures_strict -- the returned signature weights (fit_res$contribution)
+# are computed before this filter runs and are unaffected.
+setMethod("isEmpty", "NULL", function(x) TRUE)
 
 cesa_in_path   <- Sys.getenv("ESCC_CESA_IN",
   unset = "../../escc_notch/ESCC_step_epistasis/analysis/eso_cesa_before_generates.rds")
@@ -184,12 +197,17 @@ genes <- c("TP53", "NOTCH1", "NOTCH2", "NFE2L2", "PIK3CA", "FAT1", "FBXW7", "RB1
            "CDKN2A.p16INK4a", "CREBBP", "PTCH1")
 
 loglik_step <- selection_results_step$loglikelihood
-loglik_simple <- cesa@selection_results$simple_model$loglikelihood
 
-loglik_df <- data.frame(
-  gene = genes,
-  loglik_step = loglik_step,
-  loglik_simple = loglik_simple)
+# simple_model was fit on all 11 compound variants in a single ces_variant()
+# call, so its rows are ordered however that call returned them (TSG genes,
+# then oncogenes) -- not in `genes` order. Join by gene (parsed from
+# variant_name, e.g. "TP53.1", same as the gsub used below for the
+# sequential-model results) rather than trusting row order.
+simple_model_loglik <- cesa@selection_results$simple_model %>%
+  transmute(gene = gsub("\\.1.*", "", variant_name), loglik_simple = loglikelihood)
+
+loglik_df <- data.frame(gene = genes, loglik_step = loglik_step) %>%
+  left_join(simple_model_loglik, by = "gene")
 
 loglik_df <- loglik_df %>%
   mutate(

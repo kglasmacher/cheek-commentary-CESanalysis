@@ -136,12 +136,14 @@ fig1 <- ggplot() +
     lineend = "round"
   ) +
 
-  # Grey arrows: double-headed for genes selected similarly at both stages
+  # Grey arrows: double-headed (ends = "both"), matching the legend panel below
+  # -- neither end is privileged, since these genes are selected comparably at
+  # both stages
   geom_segment(
     data = dat |> filter(dir == "Selected in normal and malignant development"),
     aes(x = x_pre, xend = x_pri, y = y_num, yend = y_num, color = dir,
         linewidth = log10(n_muts + 1)),
-    arrow = arrow(length = unit(6, "pt"), type = "closed", ends = "last"),
+    arrow = arrow(length = unit(6, "pt"), type = "closed", ends = "both"),
     lineend = "round"
   ) +
 
