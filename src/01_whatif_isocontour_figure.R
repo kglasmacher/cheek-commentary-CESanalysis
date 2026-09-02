@@ -63,9 +63,9 @@ seq_ramp <- c("#cde2fb", "#9ec5f4", "#6da7ec", "#3987e5", "#256abf", "#184f95", 
 # whichever side deviates further from 1) so the depleted side -- which in
 # this data only reaches w-hat ~0.27 vs. the enriched side's ~94 -- still
 # reaches full purple saturation instead of staying washed-out near gray.
-div_low  <- "#a8a1b4"  # muted purple    (w-hat < 1)
-div_mid  <- "#cccccc"  # gray            (w-hat = 1)
-div_high <- "#aad6c6"  # muted teal-green (w-hat > 1)
+div_low  <- "#8659a8"  # vibrant purple  (w-hat < 1)
+div_mid  <- "#999999"  # deeper gray     (w-hat = 1)
+div_high <- "#3f9e78"  # vibrant teal-green (w-hat > 1)
 what_range <- range(long$log_what, na.rm = TRUE)
 
 log_breaks <- function(rng) seq(floor(rng[1]), ceiling(rng[2]), by = 1)
